@@ -1,0 +1,30 @@
+  - Constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).
+
+  - Sensor consist two metal tubes, one inside another, separated by isolator.
+
+         .pin1
+    | |  | |..GND
+    |=|  |=|  
+    | |  | |
+    | |  | |
+    | |  | |
+    | |  | |
+
+
+  - Schematics:
+
+    pin2 ---|>|-------------- pin1
+                  |    |
+                 | |   |
+             100k| |   = C sens
+                  |    | outer tube grounded
+                 ---  --- 
+
+            ____
+    pin3 ---____------- output 1v/100%
+             50k   |
+                   =1uf
+                   |
+                  ---
+
+    
