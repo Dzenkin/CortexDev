@@ -1,6 +1,5 @@
 <h2>Capacitive sensor for fill level of liquid</h2>
-
-This example describes how to measure low capacitances by CortexM0.
+This example describes how to measure low capacitances by CortexM0 chips, using event chaining procedures.
 
 
 <h3>Hardware and Software environment</h3>
