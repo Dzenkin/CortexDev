@@ -1,9 +1,9 @@
-<h3>Capacitive sensor fill level of liquid</h3>
+<h2>Capacitive sensor for fill level of liquid</h2>
 
 This example describes how to measure low capacitances by CortexM0.
 
 
-<h2>Hardware and Software environment</h2>
+<h3>Hardware and Software environment</h3>
 
   - This example runs on STM32F0xx Devices.
   
