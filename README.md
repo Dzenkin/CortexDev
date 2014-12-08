@@ -12,10 +12,9 @@ This example describes how to measure low capacitances by CortexM0.
 
   - Code compiled in Keil mVision4 .71 with standard libraries for STM32F0.
 
-  - Constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).
-
   - Sensor consist two metal tubes, one inside another, separated by isolator.
 
+  - Constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).
 
  Timer TIM2 on CH3 generates short impulse on one of sensor tube (pin2),
  ADC (triggered by CH3 of TIM2) measure echo of impulse on other tube (pin1).
