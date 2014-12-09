@@ -1,20 +1,20 @@
 /**
   ******************************************************************************
   * @file    CapSensor LevelofLiquid LoLsens/main.c 
-  * @author  Dmitry Zenkin 
+  * @author  Dimitry Zenkin 
   * @version V1.0.0
-  * @date    23-Aug-2014
+  * @date    13-Nov-2014
   
   ******************************************************************************
   * @attention
   *
   * <h2><center>&copy; COPYRIGHT 2014 Dimitry Zenkin zendim4@gmail.com </center></h2>
   *
-	* @brief   Main program body
+  * @brief   Main program body
   *  Timer TIM2 on CH3 generates short impulse on one of sensor tube (pin2),
-	*  ADC (triggered by CH3 of TIM2) measure echo of impulse on other tube (pin1).
-	*  Another output of TIM2 (CH4) uses as simple PWM output, 
-	*  proportional to fill level of liquid 1V=100% (pin3).
+  *  ADC (triggered by CH3 of TIM2) measure echo of impulse on other tube (pin1).
+  *  Another chanal of TIM2 (CH4) used as simple PWM output, 
+  *  proportional to fill level of liquid 1V=100% (pin3).
   ******************************************************************************
   */
 
@@ -40,10 +40,10 @@ TIM_OCInitTypeDef        TIM_OCInitStructure;
 /* Private variables ---------------------------------------------------------*/
 
 /* Width of scanning pulse  */
-uint32_t Channel3Pulse = 2; 
+uint32_t Channel3Pulse = 0x1; 
 
 /* Dry sensor threshold  */
-/* for gasoline */
+/* Constant tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5mm gap) */
 uint32_t EmptyLevel =  0x7C8;
 
 /* Set output to zero (about 7mV) */
@@ -61,7 +61,6 @@ void TIM2_Config(void);
   * @retval None
   */
 
-	
 int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
@@ -76,7 +75,6 @@ int main(void)
 	ADC_Config();	
 	TIM2_Config();
 
-
 	
   /* Infinite loop */
   while (1)
@@ -87,15 +85,15 @@ int main(void)
     /* Get ADC1 converted data from sensing tube */
     ADC1ConvertedValue = ADC_GetConversionValue(ADC1);
 		
-		/* Calculation for PWM output on pin3 proportional to level of liquid 1V=100% */
-		/* for gasoline */
+		//Calculation for PWM output on pin3 proportional to level of liquid 1V=100%
+		// * 3.2 for gasoline or other liquids with low dielectric permittivity
 		
 		if (ADC1ConvertedValue > EmptyLevel)
 		{Channel4Pulse = (ADC1ConvertedValue - EmptyLevel) * 3.2 ;}
 		else
 		{Channel4Pulse = 0; }
 			
-		/* refreshing pulse register */
+		//refreshing pulse register
 		TIM_OCInitStructure.TIM_Pulse = Channel4Pulse;
 		TIM_OC4Init(TIM2, &TIM_OCInitStructure);
 			
@@ -104,16 +102,10 @@ int main(void)
   }
 }
 
-/**
-  * @brief  ADC  configuration
-  * @param  None
-  * @retval None
-  */
-
 
 void ADC_Config(void)
 {
-	/* ADC Periph clock enable */
+  /* ADC Periph clock enable */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1 , ENABLE);
   /* GPIOC Periph clock enable */
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE); 
@@ -147,14 +139,14 @@ void ADC_Config(void)
 
   ADC_Init(ADC1, &ADC_InitStructure); 
   
-  /* Convert the ADC1 Channel 1 with _239_5 Cycles as sampling time */ 
-  ADC_ChannelConfig(ADC1, ADC_Channel_1 , ADC_SampleTime_41_5Cycles );
+  /* Convert the ADC1 Channel 1 with 1.5 Cycles as sampling time */ 
+  ADC_ChannelConfig(ADC1, ADC_Channel_1 , ADC_SampleTime_1_5Cycles );
   
   /* ADC Calibration */
   ADC_GetCalibrationFactor(ADC1);
 	
-	/* ADC DIScontinous mode selection */
-	ADC_DiscModeCmd(ADC1, ENABLE);
+  /* ADC DIScontinous mode selection */
+  ADC_DiscModeCmd(ADC1, ENABLE);
   
   /* Enable ADCperipheral[PerIdx] */
   ADC_Cmd(ADC1, ENABLE);     
@@ -166,13 +158,10 @@ void ADC_Config(void)
   ADC_StartOfConversion(ADC1);
 }
 
-
-
 /* TIM2 Configuration */
 
 void TIM2_Config(void)
 {
-	
   TIM_DeInit(TIM2);
   /* GPIOA Clocks enable */
   RCC_AHBPeriphClockCmd( RCC_AHBPeriph_GPIOA, ENABLE);
@@ -188,26 +177,26 @@ void TIM2_Config(void)
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_2);
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_2);
  
-	 /* TIM2 clock enable */
+  /* TIM2 clock enable */
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
   
-  /* Time Base configuration  ~500Hz */
-  TIM_TimeBaseStructure.TIM_ClockDivision = 0x4;
-  TIM_TimeBaseStructure.TIM_Prescaler = 0x20;
+  /* Time Base configuration  ~8Hz */
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0x1;
+  TIM_TimeBaseStructure.TIM_Prescaler = 0x0;
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-  TIM_TimeBaseStructure.TIM_Period = 0xFFF;
+  TIM_TimeBaseStructure.TIM_Period = 0xFFFFF;
 
   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
 
   /* Channel  3 and 4 Configuration in PWM mode */
-	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; /* low edge by default */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; /* low edge by default */
 
   TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
   TIM_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable;
   TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
   TIM_OCInitStructure.TIM_OCNPolarity = TIM_OCNPolarity_Low;
 
-	TIM_OC4Init(TIM2, &TIM_OCInitStructure); 
+  TIM_OC4Init(TIM2, &TIM_OCInitStructure); 
 
 	
 	/***************** Event chaining **************/
@@ -219,7 +208,7 @@ void TIM2_Config(void)
 	/***************** Event chaining **************/
 
 
-		// Initialize pulse registers
+  // Initialize pulse registers
   TIM_OCInitStructure.TIM_Pulse = Channel3Pulse;
   TIM_OC3Init(TIM2, &TIM_OCInitStructure);
 
@@ -231,23 +220,20 @@ void TIM2_Config(void)
 
   /* TIM2 Main Output Enable */
   TIM_CtrlPWMOutputs(TIM2, ENABLE);
-}
 
+}
 
 #ifdef  USE_FULL_ASSERT
 
-/**
-  */
 void assert_failed(uint8_t* file, uint32_t line)
 {
-  /*   ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
+    /* Infinite loop */
   while (1)
   {
   }
 }
 #endif
+
 
 
 /************************ (C) COPYRIGHT  2014 Dimitry Zenkin zendim4@gmail.com  *****END OF FILE****/
