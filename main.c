@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    CapSensor LevelofLiquid LoLsens/main.c 
+  * @file    Capacitive Sensor Fill Level of Liquid/main.c 
   * @author  Dimitry Zenkin 
   * @version V1.0.0
   * @date    13-Nov-2014
