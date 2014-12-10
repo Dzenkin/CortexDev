@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Cortexdev : Capacitive fill level sensor CortexM0 STM32 F0 ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Cortexdev</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Dzenkin/CortexDev">View on GitHub</a>
+
+          <h1 id="project_title">Cortexdev</h1>
+          <h2 id="project_tagline">Capacitive fill level sensor CortexM0 STM32 F0 </h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Dzenkin/CortexDev/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Dzenkin/CortexDev/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="capacitive-sensor-for-fill-level-of-liquid" class="anchor" href="#capacitive-sensor-for-fill-level-of-liquid" aria-hidden="true"><span class="octicon octicon-link"></span></a>Capacitive sensor for fill level of liquid</h2>
+
+<p>This example describes how to measure low capacitances by CortexM0 chips, using event chaining procedures.</p>
+
+<h3>
+<a id="hardware-and-software-environment" class="anchor" href="#hardware-and-software-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware and Software environment</h3>
+
+<ul>
+<li><p>This example runs on STM32F0xx Devices.</p></li>
+<li><p>This example has been tested with  STM32F050F4P6 chip
+ and can be easily tailored to any other supported device and development board.</p></li>
+<li><p>Code compiled in Keil mVision4 .71 with standard libraries for STM32F0.</p></li>
+<li><p>Sensor consist two metal tubes, one inside another, separated by isolator.</p></li>
+<li>
+<p>Constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).</p>
+
+<p>Timer TIM2 on CH3 generates short impulse on one of sensor tube (pin2),
+ADC (triggered by CH3 of TIM2) measure echo of impulse on other tube (pin1).
+Another output of TIM2 (CH4) uses as simple PWM output, 
+proportional to fill level of liquid (gasoline) 1V=100% (pin3).</p>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Cortexdev maintained by <a href="https://github.com/Dzenkin">Dzenkin</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
