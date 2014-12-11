@@ -20,3 +20,4 @@ This example describes how to measure low capacitances by CortexM0 chips, using 
  Another output of TIM2 (CH4) uses as simple PWM output, 
  proportional to fill level of liquid (gasoline) 1V=100% (pin3).
 
+other details about project: <a href="http://cortexdev.blogspot.com">cortexdev.blogspot.com</a>
