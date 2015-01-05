@@ -27,9 +27,13 @@ using event chaining procedures in Cortex M0 chips.
 
   - Code compiled in Keil mVision4 .71 with standard libraries for STM32F0.
 
-  - Sensor consist two metal tubes, one inside another, separated by isolator.
 
-  - Constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).
+  - Capacitive sensor 
+  - consist of two metal tubes, one inside another, separated by isolator.
+  - constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).
+  
+  - Inductive Proximity Sensor
+  - used printed coil 10 turns ~1" diametr (or winding of same size)
 
 
 
