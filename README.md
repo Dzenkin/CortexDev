@@ -12,11 +12,11 @@ This example describes how to measure low capacitances by Cortex M0 chips, using
 This example describes how design inductive proximity sensor with printed coil, 
 using event chaining procedures in Cortex M0 chips.
 
-  Device consist of main timer TIM1, that starts in same time:  
-  - slave timer TIM2 generate short impulse on sensor coil (pin2),
-	- and ADC measure echo of impulse after detection (pin1).
-	CH4 of TIM2 uses as output (pin3) 
-	high(1) when coil closed by metal, low(0) when open.
+ Device consist of main timer TIM1, that starts in same time:  
+ slave timer TIM2 generate short impulse on sensor coil (pin2),
+ and ADC measure echo of impulse after detection (pin1).
+ CH4 of TIM2 uses as output (pin3) 
+ high(1) when coil closed by metal, low(0) when open.
 
 <h3>Hardware and Software environment</h3>
 
