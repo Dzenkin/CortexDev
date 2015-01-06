@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 Dimitry Zenkin zendim4@gmail.com </center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 Dimitry Zenkin zendim4@gmail.com </center></h2>
   *
 	* @brief   Main program body
   *  Device consist of main timer TIM1, that starts in same time:  
@@ -241,9 +241,6 @@ void TIM2_Config(void)
 
 void assert_failed(uint8_t* file, uint32_t line)
 {
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
   /* Infinite loop */
   while (1)
   {
@@ -253,4 +250,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 
 
-/************************ (C) COPYRIGHT  2014 Dimitry Zenkin zendim4@gmail.com  *****END OF FILE****/
+/************************ (C) COPYRIGHT  2015 Dimitry Zenkin zendim4@gmail.com  *****END OF FILE****/
