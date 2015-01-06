@@ -12,9 +12,8 @@ This example describes how to measure low capacitances by Cortex M0 chips, using
 This example describes how design inductive proximity sensor with printed coil, 
 using event chaining procedures in Cortex M0 chips.
 
- Device consist of main timer TIM1, that starts in same time:  
- slave timer TIM2 generate short impulse on sensor coil (pin2),
- and ADC measure echo of impulse after detection (pin1).
+ Timer TIM2 on CH3 generates short impulse on sensor coil (pin2),
+ and ADC (triggered by CH3 of TIM2) measure echo of impulse after detection (pin1).
  CH4 of TIM2 uses as output (pin3) 
  high(1) when coil closed by metal, low(0) when open.
 
@@ -25,7 +24,7 @@ using event chaining procedures in Cortex M0 chips.
   - This examples has been tested with  STM32F050F4P6 chip
      and can be easily tailored to any other supported device and development board.
 
-  - Code compiled in Keil mVision4 .71 with standard libraries for STM32F0.
+  - Code compiled in Keil µVision 4 .71 with standard libraries for STM32F0.
  <br>
   - Capacitive sensor 
   consist of two metal tubes, one inside another, separated by isolator.
