@@ -2,11 +2,11 @@
   @page Inductive sensor
   
   @verbatim
-  ******************** (C) COPYRIGHT 2014 Dmitry Zenkin *******************
+  ******************** (C) COPYRIGHT 2015 Dmitry Zenkin *******************
   * @file    readme.txt  
   * @author  Dmitry Zenkin
   * @version V1.0.0
-  * @date    27-Oct-2014
+  * @date    5-Jan-2015
   * @brief   Inductive sensor
   ******************************************************************************
   * Unless required by applicable law or agreed to in writing, software 
@@ -22,11 +22,10 @@
 
 This example describes how to measure dissipation at low inductance by CortexM0.
 
- Device consist of main timer TIM1, that starts in same time:  
- - slave timer TIM2 generate short impulse on sensor coil (pin2),
+ Timer TIM2 generate on CH3 short impulse on sensor coil (pin2),
   - and ADC measure echo of impulse after detection on D2 (pin1).
- Another output of TIM2 uses as PWM output, 
- proportional to distanse (pin3).
+ CH4 of TIM2 uses as output, (pin3).
+ Output (pin3) high(1) when coil closed by metal target, low(0) when open.
 
 
 
@@ -50,27 +49,22 @@ This example describes how to measure dissipation at low inductance by CortexM0.
   - Constants tested on 10 turns winding coil with 20x30mm frame.
 
     - Schematics:
-
-  
-
-
-           D1   coil            ___100k
-  pin2 ---|>|---uuuu-----------|___|-----o +V
-             |          |    |
-             V  D2     | |   = 0.1uF
-             -     100k| |   |
-             |          |    |
-             o pin1    ---  ---
-
-
-            ____
-    pin3 ---____------- output 1v/100%
-             50k   |
-                   =1uf
-                   |
-                  ---
-
     
+                             D2
+                          |--|>|------ o pin1 ADC
+                          C
+                    Coil  C
+                          C
+           D1             |                ___100k
+  pin2 ---|>|-----------------------------|___|-----o +V 3.3V
+  TIM2Ch3              |    |
+                      | |   = 0.1uF
+                  100k| |   |
+                       |    |
+                      ---  ---
+
+
+
 
 @par How to use it ? 
 
