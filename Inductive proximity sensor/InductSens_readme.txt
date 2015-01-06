@@ -1,5 +1,5 @@
 /**
-  @page Inductive sensor
+  @page Inductive proximity sensor
   
   @verbatim
   ******************** (C) COPYRIGHT 2015 Dmitry Zenkin *******************
@@ -7,7 +7,7 @@
   * @author  Dmitry Zenkin
   * @version V1.0.0
   * @date    5-Jan-2015
-  * @brief   Inductive sensor
+  * @brief   Inductive proximity sensor
   ******************************************************************************
   * Unless required by applicable law or agreed to in writing, software 
   * distributed under the License is distributed on an "AS IS" BASIS, 
@@ -79,5 +79,5 @@ In order to make the program work, you must do the following :
 
  
 
- * <h3><center>&copy; COPYRIGHT Dmitry Zenkin </center></h3>
+ * <h3><center>&copy; COPYRIGHT Dmitry Zenkin zendim4@gmail.com</center></h3>
  */
