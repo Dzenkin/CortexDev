@@ -89,7 +89,7 @@ int main(void)
     /* Test EOC flag */
     while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
     
-    /* Get ADC1 converted data from sensing tube */
+    /* Get ADC1 converted data from detected DC offset */
     ADC1ConvertedValue = ADC_GetConversionValue(ADC1);
 		
 		//Calculation for output on pin3 - simple hysteresis switch
@@ -116,8 +116,8 @@ int main(void)
 
 void ADC_Config(void)
 {
-	/* ADC Periph clock enable */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1 , ENABLE);
+  /* ADC Periph clock enable */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1 , ENABLE);
   /* GPIOC Periph clock enable */
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE); 
 	
