@@ -20,13 +20,12 @@ using event chaining procedures in Cortex M0 chips.
 
 <h3>Hardware and Software environment</h3>
 
-  - This example runs on STM32F0xx Devices.
+  - This examples runs on STM32F0xx Devices.
   
-  - This example has been tested with  STM32F050F4P6 chip
+  - This examples has been tested with  STM32F050F4P6 chip
      and can be easily tailored to any other supported device and development board.
 
   - Code compiled in Keil mVision4 .71 with standard libraries for STM32F0.
-
  <br>
   - Capacitive sensor 
   consist of two metal tubes, one inside another, separated by isolator.
