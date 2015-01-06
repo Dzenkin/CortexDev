@@ -11,10 +11,9 @@
   * <h2><center>&copy; COPYRIGHT 2015 Dimitry Zenkin zendim4@gmail.com </center></h2>
   *
 	* @brief   Main program body
-  *  Device consist of main timer TIM1, that starts in same time:  
-  *  - slave timer TIM2 generate short impulse on sensor coil (pin2),
-	*  - and ADC measure echo of impulse after detection (pin1).
-	*  Another chn of TIM2 uses as output, (pin3) 
+  *        timer TIM2 generate on Ch3 short impulse on sensor coil (pin2),
+	*   and ADC measure echo of impulse after detection (pin1).
+	*  Ch4 of TIM2 uses as output, (pin3) 
 	*  high(1) when coil closed by metal, low(0) when open.
   ******************************************************************************
   */
