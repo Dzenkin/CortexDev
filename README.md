@@ -32,7 +32,7 @@ using event chaining procedures in Cortex M0 chips.
   constants tested on tubes with 120mm active zone, diameter 19mm and 28mm (3.5MM gap).
   <br>
   - Inductive Proximity Sensor
-  used printed coil 10 turns ~1" diametr (or winding of same size)
+  As sensitive inductor used printed coil 10 turns ~1" diameter (or winding of same size)
 
 
 
